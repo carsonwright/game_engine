@@ -29,6 +29,7 @@ class ThemesController < ApplicationController
   # POST /themes.json
   def create
     @theme = Theme.new(theme_params)
+    @theme.user = current_user
 
     respond_to do |format|
       if @theme.save
