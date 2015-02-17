@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Deck -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Deck %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @deck.name %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:name) %></dt>
+      <dd><pre class="prettyprint"><%= @deck.name %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:theme_id) %></dt>
+      <dd><pre class="prettyprint"><%= @deck.theme_id %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Theme:</strong>
-  <%= @deck.theme_id %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              decks_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_deck_path(@deck), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              deck_path(@deck),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @deck.user %>
-</p>
-
-<%= link_to 'Edit', edit_deck_path(@deck) %> |
-<%= link_to 'Back', decks_path %>
